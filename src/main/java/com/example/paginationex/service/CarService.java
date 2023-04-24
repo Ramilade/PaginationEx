@@ -54,9 +54,12 @@ public class CarService {
         } else {
             throw new IllegalArgumentException("Invalid column: " + column);
         }
-        List<Car> cars = carPage.getContent();
-        return cars.stream().map(CarResponse::new).collect(Collectors.toList());
+        List<CarResponse> carResponses = carPage.getContent().stream()
+                .map(car -> new CarResponse(car.getId(), car.getBrand(), car.getModel(), car.getColor(), car.getKilometers()))
+                .collect(Collectors.toList());
+        return carResponses;
     }
+
 
 
 }
