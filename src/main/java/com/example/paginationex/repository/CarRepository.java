@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CarRepository extends JpaRepository<Car, Integer> {
 
     Page<Car> findByBrand(String brand, Pageable pageable);
+
+    Page<Car> findByColor(String color, Pageable pageable);
     }

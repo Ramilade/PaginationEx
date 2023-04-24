@@ -45,5 +45,18 @@ public class CarService {
     }
 
 
+    public List<CarResponse> filterCars(String column, String val, Pageable pageable) {
+        Page<Car> carPage;
+        if (column.equals("brand")) {
+            carPage = carRepository.findByBrand(val, pageable);
+        } else if (column.equals("color")) {
+            carPage = carRepository.findByColor(val, pageable);
+        } else {
+            throw new IllegalArgumentException("Invalid column: " + column);
+        }
+        List<Car> cars = carPage.getContent();
+        return cars.stream().map(CarResponse::new).collect(Collectors.toList());
+    }
+
 
 }

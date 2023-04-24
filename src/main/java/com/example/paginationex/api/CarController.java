@@ -5,10 +5,7 @@ import com.example.paginationex.service.CarService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,16 @@ public class CarController {
 
         return carService.getCarsByBrand(brand, pageable);
     }
+
+    @GetMapping("/filter")
+    public List<CarResponse> filterCars(@RequestParam String column, @RequestParam String val,
+                                        Pageable pageable) {
+        Sort sort = pageable.getSort().and(Sort.by("brand"));
+        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+
+        return carService.filterCars(column, val, pageable);
+    }
+
 
 
 
