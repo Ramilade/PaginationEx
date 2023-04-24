@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CarDto {
+public class CarResponse {
 
     private Integer id;
     private String brand;
@@ -18,7 +18,7 @@ public class CarDto {
     private String color;
     private Integer kilometers;
 
-    public CarDto(Car car) {
+    public CarResponse(Car car) {
         this.id = car.getId();
         this.brand = car.getBrand();
         this.model = car.getModel();

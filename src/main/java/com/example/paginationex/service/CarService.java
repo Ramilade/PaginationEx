@@ -1,6 +1,6 @@
 package com.example.paginationex.service;
 
-import com.example.paginationex.dto.CarDto;
+import com.example.paginationex.dto.CarResponse;
 import com.example.paginationex.entity.Car;
 import com.example.paginationex.repository.CarRepository;
 import org.springframework.data.domain.Page;
@@ -20,10 +20,10 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public List<CarDto> getCars(Pageable pageable) {
+    public List<CarResponse> getCars(Pageable pageable) {
         List<Car> cars = carRepository.findAll();
         return cars.stream()
-                .map(car -> new CarDto(
+                .map(car -> new CarResponse(
                         car.getId(),
                         car.getBrand(),
                         car.getModel(),
@@ -37,10 +37,10 @@ public class CarService {
         return (Page<Car>) carRepository.findAll((Sort) pageable);
     }
 
-    public List<CarDto> getCarsByBrand(String brand, Pageable pageable) {
+    public List<CarResponse> getCarsByBrand(String brand, Pageable pageable) {
         List<Car> cars = carRepository.findByBrand(brand, pageable).getContent();
         return cars.stream()
-                .map(car -> new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getColor(), car.getKilometers()))
+                .map(car -> new CarResponse(car.getId(), car.getBrand(), car.getModel(), car.getColor(), car.getKilometers()))
                 .toList();
     }
 

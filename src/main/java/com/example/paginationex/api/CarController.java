@@ -1,6 +1,6 @@
 package com.example.paginationex.api;
 
-import com.example.paginationex.dto.CarDto;
+import com.example.paginationex.dto.CarResponse;
 import com.example.paginationex.service.CarService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,12 +23,12 @@ public class CarController {
     }
 
     @GetMapping
-    public List<CarDto> getCars(Pageable pageable) {
+    public List<CarResponse> getCars(Pageable pageable) {
         return carService.getCars(pageable);
     }
 
     @GetMapping("/brand/{brand}")
-    public List<CarDto> getCarsByBrand(@PathVariable String brand, Pageable pageable) {
+    public List<CarResponse> getCarsByBrand(@PathVariable String brand, Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("brand"));
 
         return carService.getCarsByBrand(brand, pageable);
