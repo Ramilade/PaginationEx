@@ -39,8 +39,11 @@ public class CarService {
 
     public List<CarDto> getCarsByBrand(String brand, Pageable pageable) {
         List<Car> cars = carRepository.findByBrand(brand, pageable).getContent();
-        return cars.stream().map(CarDto::new).collect(Collectors.toList());
+        return cars.stream()
+                .map(car -> new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getColor(), car.getKilometers()))
+                .toList();
     }
+
 
 
 }
