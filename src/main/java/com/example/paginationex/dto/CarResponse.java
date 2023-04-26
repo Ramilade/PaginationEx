@@ -12,11 +12,11 @@ import lombok.Setter;
 @Setter
 public class CarResponse {
 
-    private Integer id;
+    private int id;
     private String brand;
     private String model;
     private String color;
-    private Integer kilometers;
+    private int kilometers;
 
     public CarResponse(Car car) {
         this.id = car.getId();

@@ -16,9 +16,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Car {
     @Id
-    private Integer id;
+    private int id;
     private String brand;
     private String model;
     private String color;
-    private Integer kilometers;
+    private int kilometers;
 }

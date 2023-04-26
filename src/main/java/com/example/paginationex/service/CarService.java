@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class CarService {
 
-    private final CarRepository carRepository;
+    CarRepository carRepository;
 
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
